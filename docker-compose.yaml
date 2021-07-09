@@ -3,7 +3,7 @@ services:
   database:
     image: 'postgres' # use latest official postgres version
     ports:
-      - '5431:5432'
+      - '5432'
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=reefSolutions
