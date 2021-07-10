@@ -23,3 +23,8 @@ export enum TaskStatus {
   SUBMITTED = 'SUMBITTED',
   NOT_SUBMITTED = 'NOT_SUBMITTED',
 }
+
+export interface Tasks {
+  id: string;
+  description: string;
+}
