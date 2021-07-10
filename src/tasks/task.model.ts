@@ -1,4 +1,5 @@
-export interface Task {
+export interface Results {
+  date: string;
   temperature?: number;
 
   salinity?: number;
@@ -16,10 +17,10 @@ export interface Task {
   calcium?: number;
 
   magnesium?: number;
-  status: TaskStatus;
+  status: ResultStatus;
 }
 
-export enum TaskStatus {
+export enum ResultStatus {
   SUBMITTED = 'SUMBITTED',
   NOT_SUBMITTED = 'NOT_SUBMITTED',
 }

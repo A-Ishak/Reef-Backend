@@ -1,46 +1,54 @@
 import { Injectable } from '@nestjs/common';
-import { Task, TaskStatus, Tasks } from './task.model';
+import { Results, ResultStatus, Tasks } from './task.model';
 import { v4 as uuid } from 'uuid';
+import { waterSampleDTO } from 'src/dtos/water-sample.dto';
 
 @Injectable()
 export class TasksService {
-  private tasks: Task[] = [];
+  private tasks: Results[] = [];
 
-  getAllTasks(): Task[] {
+  getAllTasks(): Results[] {
     return this.tasks;
   }
-  createTasks(id: string, description: string): Tasks {
-    const task: Tasks = {
-      id: id,
-      description: description,
-    };
-    return task;
-  }
 
-  createTask(
-    temperature?: number,
-    salinity?: number,
-    ammonia?: number,
-    nitrite?: number,
-    nitrate?: number,
-    phosphate?: number,
-    alkalinity?: number,
-    calcium?: number,
-    magnesium?: number,
-  ): Task {
-    const task: Task = {
-      temperature: temperature,
-      salinity: salinity,
-      ammonia: ammonia,
-      nitrite: nitrite,
-      nitrate: nitrate,
-      phosphate: phosphate,
-      alkalinity: alkalinity,
-      calcium: calcium,
-      magnesium: magnesium,
-      status: TaskStatus.SUBMITTED,
+  createTask(waterSampleDto: waterSampleDTO): Results {
+    const {
+      temperature,
+      salinity,
+      ammonia,
+      nitrite,
+      nitrate,
+      phosphate,
+      alkalinity,
+      calcium,
+      magnesium,
+    } = waterSampleDto;
+
+    const task: Results = {
+      temperature,
+      salinity,
+      ammonia,
+      nitrite,
+      nitrate,
+      phosphate,
+      alkalinity,
+      calcium,
+      magnesium,
+      date: new Date().toLocaleString(),
+      status: ResultStatus.SUBMITTED,
     };
     this.tasks.push(task);
     return task;
+  }
+
+  getWaterSampleByAlkalinity() {
+    return this.tasks.find((selectedDate) => selectedDate.alkalinity);
+  }
+
+  getWaterSampleByCalcium() {
+    return this.tasks.find((selectedDate) => selectedDate.calcium);
+  }
+  getWaterSampleByMagnesium() {
+    return this.tasks.find((selectedDate) => selectedDate.magnesium);
   }
 }
