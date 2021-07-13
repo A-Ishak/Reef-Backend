@@ -2,13 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { Results, ResultStatus, Tasks } from './task.model';
 import { v4 as uuid } from 'uuid';
 import { waterSampleDTO } from 'src/dtos/water-sample.dto';
+import { alk } from './tasks.controller';
 
 @Injectable()
 export class TasksService {
-  private tasks: Results[] = [];
+  private results: Results[] = [];
 
   getAllTasks(): Results[] {
-    return this.tasks;
+    return this.results;
   }
 
   createTask(waterSampleDto: waterSampleDTO): Results {
@@ -37,18 +38,35 @@ export class TasksService {
       date: new Date().toLocaleString(),
       status: ResultStatus.SUBMITTED,
     };
-    this.tasks.push(task);
+    this.results.push(task);
     return task;
   }
 
   getWaterSampleByAlkalinity() {
-    return this.tasks.find((selectedDate) => selectedDate.alkalinity);
+    return this.results.find((selectedDate) => selectedDate.alkalinity);
   }
 
   getWaterSampleByCalcium() {
-    return this.tasks.find((selectedDate) => selectedDate.calcium);
+    return this.results.find((selectedDate) => selectedDate.calcium);
   }
   getWaterSampleByMagnesium() {
-    return this.tasks.find((selectedDate) => selectedDate.magnesium);
+    return this.results.find((selectedDate) => selectedDate.magnesium);
+  }
+  returnAverageAmountOfAlk() {
+    const alks = [];
+
+    for (const alkalin of this.results) {
+      alks.push(alkalin.alkalinity);
+      //console.log(alks);
+    }
+    let a = 0;
+    for (a of alks) {
+      a += a;
+    }
+    return alks[3];
+    const alkAmounts = alks.reduce((a, b) => a + b, 0);
+
+    console.log(alkAmounts);
+    return alkAmounts;
   }
 }

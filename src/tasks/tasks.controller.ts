@@ -24,3 +24,12 @@ export class TasksController {
     }
   }
 }
+
+@Controller('tasks/alk')
+export class alk {
+  constructor(private tasksService: TasksService) {}
+  @Get()
+  getAlkAverage() {
+    return this.tasksService.returnAverageAmountOfAlk();
+  }
+}
