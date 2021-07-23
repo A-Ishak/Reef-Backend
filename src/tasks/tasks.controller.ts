@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Delete, Patch } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { waterSampleDTO } from 'src/dtos/water-sample.dto';
 import { Results } from './task.model';
 import { TasksService } from './tasks.service';
@@ -15,7 +16,7 @@ export class TasksController {
   createTask(@Body() waterSampleDto: waterSampleDTO): Results {
     return this.tasksService.createTask(waterSampleDto);
   }
-  @Get()
+  @Get('/getAlk')
   getTaskById() {
     for (const results of this.tasksService.getAllTasks()) {
       if (results.alkalinity != 8) {
@@ -23,13 +24,17 @@ export class TasksController {
       }
     }
   }
-}
-
-@Controller('tasks/alk')
-export class alk {
-  constructor(private tasksService: TasksService) {}
-  @Get()
+  @Get('/alk')
   getAlkAverage() {
     return this.tasksService.returnAverageAmountOfAlk();
+  }
+
+  @Delete('/:alk')
+  deleteResultsWith8Alk(@Param('alk') alk: number) {
+    return this.tasksService.deleteResultsWith8Alk(alk);
+  }
+  @Patch('/:alky')
+  changeSubmitStatus(@Param('alky') alky: number) {
+    return this.tasksService.changeStatus(alky);
   }
 }
