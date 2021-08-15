@@ -1,6 +1,6 @@
-import { isDate, IsNumber, IsOptional } from 'class-validator';
+import { IsNumber, IsOptional } from 'class-validator';
 
-export class waterSampleDTO {
+export class changedResult {
   @IsNumber()
   @IsOptional()
   temperature?: string;

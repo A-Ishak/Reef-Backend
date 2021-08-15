@@ -1,4 +1,4 @@
-import { ResultStatus } from '../tasks/task.model';
+import { ResultStatus } from '../tasks/results-types';
 
 export class getResulsDto {
   status?: ResultStatus;
