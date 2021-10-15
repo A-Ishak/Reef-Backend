@@ -1,4 +1,5 @@
 import { isDate, IsNumber, IsOptional } from 'class-validator';
+import { CreateDateColumn } from 'typeorm';
 
 export class waterSampleDTO {
   @IsNumber()
@@ -36,6 +37,9 @@ export class waterSampleDTO {
   @IsNumber()
   @IsOptional()
   magnesium?: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
 
   @IsOptional()
   search?: string;

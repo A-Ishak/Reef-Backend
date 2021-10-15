@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ResultsModule } from './tasks/results.module';
+import { ResultsModule } from './results/results.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -10,13 +9,12 @@ import { AuthModule } from './auth/auth.module';
       type: 'postgres',
       host: 'localhost',
       port: 5432,
-      username: 'postgres',
-      password: 'lorikeet12!',
-      database: 'reef-backend',
+      username: 'asadishak',
+      password: 'password!',
+      database: 'reefBackendFinal',
       autoLoadEntities: true,
       synchronize: true,
     }),
-    AuthModule,
   ],
 })
 export class AppModule {}
