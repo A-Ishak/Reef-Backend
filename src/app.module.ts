@@ -10,7 +10,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       host: 'localhost',
       port: 5432,
       username: 'asadishak',
-      password: 'password!',
+      password: 'password',
       database: 'reefBackendFinal',
       autoLoadEntities: true,
       synchronize: true,

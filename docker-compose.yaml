@@ -5,8 +5,8 @@ services:
     ports:
       - '5432'
     environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_USER=reefSolutions
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=asadishak
     volumes:
       - database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
 
