@@ -7,22 +7,32 @@ import {
   JoinColumn,
   PrimaryColumn,
 } from 'typeorm';
+import { WaterResultsEntity } from '../results/waterResults.entity';
 import { EAquariumTypes } from '../shared/types/aquariumTypes';
 
 @Entity({ name: 'User' })
-export class WaterResult {
-  @PrimaryColumn('uuid')
+export class UserEntity {
+  @PrimaryColumn({ unique: true })
   email: string;
 
-  @Column({ nullable: true })
+  @Column()
   firstName: string;
 
-  @Column({ nullable: true })
+  @Column()
   lastName: string;
 
-  @Column('enum', { array: true, nullable: true, enum: EAquariumTypes, default: [] })
-  aquariumType: EAquariumTypes[];
+  @Column('enum', {
+    nullable: true,
+    enum: EAquariumTypes,
+  })
+  aquariumType: EAquariumTypes;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt?: Date;
+
+  @OneToMany(() => WaterResultsEntity, (waterResults) => waterResults.user, {
+    cascade: true,
+    eager: true,
+  })
+  waterResults?: WaterResultsEntity[];
 }

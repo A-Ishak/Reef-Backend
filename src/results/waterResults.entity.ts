@@ -5,10 +5,12 @@ import {
   CreateDateColumn,
   OneToMany,
   JoinColumn,
+  ManyToOne,
 } from 'typeorm';
+import { UserEntity } from '../user/user.entity';
 
 @Entity({ name: 'Water Test' })
-export class WaterResult {
+export class WaterResultsEntity {
   @PrimaryGeneratedColumn('uuid')
   testId: string;
 
@@ -41,4 +43,7 @@ export class WaterResult {
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt?: Date;
+
+  @ManyToOne(() => UserEntity, (user) => user.waterResults)
+  user?: UserEntity;
 }
