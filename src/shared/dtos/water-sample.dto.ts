@@ -1,46 +1,44 @@
-import { isDate, IsNumber, IsOptional } from 'class-validator';
+import { NotImplementedException } from '@nestjs/common';
+import { isDate, IsNumber, IsOptional, IsString } from 'class-validator';
 import { CreateDateColumn } from 'typeorm';
 
-export class waterSampleDTO {
-  @IsNumber()
-  @IsOptional()
-  temperature?: string;
+export class CreateWaterSampleDTO {
+  @IsString()
+  email: string;
 
   @IsNumber()
   @IsOptional()
-  salinity?: string;
+  temperature?: Number;
 
   @IsNumber()
   @IsOptional()
-  ammonia?: string;
+  salinity?: Number;
 
   @IsNumber()
   @IsOptional()
-  nitrite?: string;
+  ammonia?: Number;
 
   @IsNumber()
   @IsOptional()
-  nitrate?: string;
+  nitrite?: Number;
 
   @IsNumber()
   @IsOptional()
-  phosphate?: string;
+  nitrate?: Number;
 
   @IsNumber()
   @IsOptional()
-  alkalinity?: string;
+  phosphate?: Number;
 
   @IsNumber()
   @IsOptional()
-  calcium?: string;
+  alkalinity?: Number;
 
   @IsNumber()
   @IsOptional()
-  magnesium?: string;
+  calcium?: Number;
 
-  @CreateDateColumn()
-  createdAt: Date;
-
+  @IsNumber()
   @IsOptional()
-  search?: string;
+  magnesium?: Number;
 }

@@ -7,7 +7,7 @@ import {
   JoinColumn,
   PrimaryColumn,
 } from 'typeorm';
-import { WaterResultsEntity } from '../results/waterResults.entity';
+import { WaterSampleEntity } from '../results/waterResults.entity';
 import { EAquariumTypes } from '../shared/types/aquariumTypes';
 
 @Entity({ name: 'User' })
@@ -30,9 +30,9 @@ export class UserEntity {
   @CreateDateColumn({ name: 'created_at' })
   createdAt?: Date;
 
-  @OneToMany(() => WaterResultsEntity, (waterResults) => waterResults.user, {
+  @OneToMany(() => WaterSampleEntity, (waterResults) => waterResults.user, {
     cascade: true,
     eager: true,
   })
-  waterResults?: WaterResultsEntity[];
+  waterResults?: WaterSampleEntity[];
 }

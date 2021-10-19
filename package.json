@@ -14,7 +14,7 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "start:node": "nodemon --exec yarn start",
+    "start:node": "nest start",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
@@ -29,7 +29,7 @@
     "@types/validator": "^13.1.4",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
-    "nodemon": "^2.0.12",
+    "nodemon": "^2.0.13",
     "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
@@ -75,5 +75,18 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src/**/*.ts"
+    ],
+    "ignore": [
+      "src/**/*.spec.ts",
+      "*/js",
+      "*/json"
+    ],
+    "exec": "yarn start",
+    "verbose": "true",
+    "ext": "ts"
   }
 }

@@ -10,7 +10,7 @@ import {
 import { UserEntity } from '../user/user.entity';
 
 @Entity({ name: 'Water Test' })
-export class WaterResultsEntity {
+export class WaterSampleEntity {
   @PrimaryGeneratedColumn('uuid')
   testId: string;
 
@@ -42,8 +42,9 @@ export class WaterResultsEntity {
   magnesium: Number;
 
   @CreateDateColumn({ name: 'created_at' })
-  createdAt?: Date;
+  createdAt: Date;
 
   @ManyToOne(() => UserEntity, (user) => user.waterResults)
-  user?: UserEntity;
+  user: UserEntity;
+  newWaterSample: Promise<UserEntity>;
 }
