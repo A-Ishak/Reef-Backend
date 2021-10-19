@@ -26,7 +26,6 @@ export class WaterResultsService {
     newWaterSample.salinity = waterSample.salinity;
     newWaterSample.temperature = waterSample.temperature;
     newWaterSample.user = user;
-    // user.waterResults.push(newWaterSample);
 
     const createdWaterSample = this.waterSampleRepository.save(newWaterSample);
     return createdWaterSample;

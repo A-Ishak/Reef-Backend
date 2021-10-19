@@ -38,12 +38,4 @@ export class UserService {
     (await currentUser).aquariumType = updateAquariumType.aquariumType;
     return currentUser;
   }
-
-  // public async addWaterResult(
-  //   newWaterSample: WaterSampleEntity,
-  //   currentUser: UserEntity,
-  // ) {
-  //   currentUser.waterResults.push(newWaterSample);
-  //   const updatedUser = this.userRepository.save(currentUser);
-  // }
 }
