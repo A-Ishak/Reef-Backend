@@ -2,12 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { userInfo } from 'os';
 import { Repository } from 'typeorm';
-import { WaterSampleEntity } from '../results/waterResults.entity';
-import { WaterResultsService } from '../results/waterResults.service';
 import {
   CreateUserDto,
   UpdateUserAquariumTypeDto,
 } from '../shared/dtos/user.dto';
+import { WaterSampleService } from '../waterSamples/waterSample.service';
 import { UserEntity } from './user.entity';
 
 @Injectable()
@@ -15,6 +14,7 @@ export class UserService {
   constructor(
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
+    private waterSampleService: WaterSampleService,
   ) {}
 
   public async getUserByEmail(userEmail: string) {
@@ -37,5 +37,13 @@ export class UserService {
     const currentUser = this.getUserByEmail(updateAquariumType.email);
     (await currentUser).aquariumType = updateAquariumType.aquariumType;
     return currentUser;
+  }
+
+  public async returnWaterRecommendations(email: string) {
+    const currentUser = this.getUserByEmail(email);
+    const usersWaterSamples = (await currentUser).waterResults;
+    return this.waterSampleService.waterOptimisationAlgorithm(
+      usersWaterSamples,
+    );
   }
 }

@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { WaterResultsModule } from './results/waterResults.module';
+import { WaterSampleModule } from './waterSamples/waterSample.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
-    WaterResultsModule,
+    WaterSampleModule,
     UserModule,
     TypeOrmModule.forRoot({
       type: 'postgres',

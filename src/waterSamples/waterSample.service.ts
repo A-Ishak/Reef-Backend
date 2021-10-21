@@ -3,15 +3,20 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateWaterSampleDTO } from '../shared/dtos/water-sample.dto';
 import { UserService } from '../user/user.service';
-import { WaterSampleEntity } from './waterResults.entity';
+import { WaterSampleEntity } from './waterSample.entity';
 
 @Injectable()
-export class WaterResultsService {
+export class WaterSampleService {
   constructor(
     @InjectRepository(WaterSampleEntity)
     private waterSampleRepository: Repository<WaterSampleEntity>,
     private userService: UserService,
   ) {}
+
+  public async waterOptimisationAlgorithm(waterSamples: WaterSampleEntity[]) {
+    const latestSample = waterSamples[-1];
+
+  }
 
   public async createNewWaterSample(waterSample: CreateWaterSampleDTO) {
     const newWaterSample = new WaterSampleEntity();

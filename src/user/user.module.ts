@@ -1,7 +1,7 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { WaterSampleEntity } from '../results/waterResults.entity';
-import { WaterResultsService } from '../results/waterResults.service';
+import { WaterSampleEntity } from '../waterSamples/waterSample.entity';
+import { WaterSampleService } from '../waterSamples/waterSample.service';
 import { UserController } from './user.controller';
 import { UserEntity } from './user.entity';
 import { UserService } from './user.service';

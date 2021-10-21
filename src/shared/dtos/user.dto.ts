@@ -1,6 +1,6 @@
 import { isDate, IsNumber, IsOptional, IsString } from 'class-validator';
 import { CreateDateColumn } from 'typeorm';
-import { WaterSampleEntity } from '../../results/waterResults.entity';
+import { WaterSampleEntity } from '../../waterSamples/waterSample.entity';
 import { EAquariumTypes } from '../types/aquariumTypes';
 
 export class CreateUserDto {

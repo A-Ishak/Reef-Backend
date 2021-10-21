@@ -1,13 +1,13 @@
 import { Body, Controller, Inject, Post } from '@nestjs/common';
 import { CreateWaterSampleDTO } from '../shared/dtos/water-sample.dto';
-import { WaterSampleEntity } from './waterResults.entity';
-import { WaterResultsService } from './waterResults.service';
+import { WaterSampleEntity } from './waterSample.entity';
+import { WaterSampleService } from './waterSample.service';
 
 @Controller('waterSample')
-export class WaterResultsController {
+export class WaterSampleController {
   constructor(
-    @Inject(WaterResultsService)
-    private readonly waterResultsService: WaterResultsService,
+    @Inject(WaterSampleService)
+    private readonly waterResultsService: WaterSampleService,
   ) {}
   @Post('/waterSampleCreation')
   public async createUser(
