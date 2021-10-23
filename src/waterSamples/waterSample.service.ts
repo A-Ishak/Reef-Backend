@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common/decorators/core';
+import { forwardRef } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common/decorators/core';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateWaterSampleDTO } from '../shared/dtos/water-sample.dto';
@@ -10,12 +11,12 @@ export class WaterSampleService {
   constructor(
     @InjectRepository(WaterSampleEntity)
     private waterSampleRepository: Repository<WaterSampleEntity>,
+    @Inject(forwardRef(() => UserService))
     private userService: UserService,
   ) {}
 
   public async waterOptimisationAlgorithm(waterSamples: WaterSampleEntity[]) {
     const latestSample = waterSamples[-1];
-
   }
 
   public async createNewWaterSample(waterSample: CreateWaterSampleDTO) {

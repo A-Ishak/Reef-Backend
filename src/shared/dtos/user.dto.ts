@@ -19,3 +19,10 @@ export class AddWaterResultToUserDto {
   email?: string;
   waterSample: WaterSampleEntity;
 }
+
+export class RegisterNewAccountDto {
+  email?: string;
+  password?: string;
+  firstName?: string;
+  lastName?: string;
+}
