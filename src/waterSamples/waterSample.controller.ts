@@ -1,5 +1,5 @@
 import { Body, Controller, Inject, Post } from '@nestjs/common';
-import { CreateWaterSampleDTO } from '../shared/dtos/water-sample.dto';
+import { CreateWaterSampleDTO } from './water-sample.dto';
 import { WaterSampleEntity } from './waterSample.entity';
 import { WaterSampleService } from './waterSample.service';
 

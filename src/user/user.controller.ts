@@ -1,9 +1,10 @@
 import { Body, Controller, Inject, Post, Put, Redirect } from '@nestjs/common';
 import { isEmail } from 'class-validator';
 import {
+  AuthCredentialsDto,
   CreateUserDto,
   UpdateUserAquariumTypeDto,
-} from '../shared/dtos/user.dto';
+} from './user.dto';
 import { UserEntity } from './user.entity';
 import { UserService } from './user.service';
 
@@ -11,7 +12,7 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(@Inject(UserService) private readonly userService: UserService) {}
 
-  @Post('/userCreation')
+  @Post('/signup')
   public async createUser(@Body() userDto: CreateUserDto): Promise<UserEntity> {
     return this.userService.createUser(userDto);
   }
@@ -21,5 +22,12 @@ export class UserController {
     @Body() updateUserAquariumTypeDto: UpdateUserAquariumTypeDto,
   ) {
     return this.userService.editAquariumType(updateUserAquariumTypeDto);
+  }
+
+  @Post('/signin')
+  public async signIn(
+    @Body() authCredentialsDto: AuthCredentialsDto,
+  ): Promise<{ accessToken: string }> {
+    return this.userService.signIn(authCredentialsDto);
   }
 }

@@ -2,7 +2,7 @@ import { forwardRef } from '@nestjs/common';
 import { Inject, Injectable } from '@nestjs/common/decorators/core';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateWaterSampleDTO } from '../shared/dtos/water-sample.dto';
+import { CreateWaterSampleDTO } from './water-sample.dto';
 import { UserService } from '../user/user.service';
 import { WaterSampleEntity } from './waterSample.entity';
 

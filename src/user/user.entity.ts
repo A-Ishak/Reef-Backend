@@ -9,11 +9,16 @@ import {
 } from 'typeorm';
 import { WaterSampleEntity } from '../waterSamples/waterSample.entity';
 import { EAquariumTypes } from '../shared/types/aquariumTypes';
+import { IsEmail } from 'class-validator';
 
 @Entity({ name: 'User' })
 export class UserEntity {
   @PrimaryColumn({ unique: true })
+  @IsEmail()
   email: string;
+
+  @Column()
+  password: string;
 
   @Column()
   firstName: string;
