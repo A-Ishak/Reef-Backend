@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { WaterSampleModule } from './waterSamples/waterSample.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
+import { JwtStrategy } from './auth/jwt.strategy';
 
 @Module({
   imports: [

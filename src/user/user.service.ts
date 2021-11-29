@@ -7,15 +7,12 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import e from 'express';
-import { userInfo } from 'os';
 import { Repository } from 'typeorm';
 import {
   AuthCredentialsDto,
   CreateUserDto,
   UpdateUserAquariumTypeDto,
 } from './user.dto';
-import { WaterSampleModule } from '../waterSamples/waterSample.module';
 import { WaterSampleService } from '../waterSamples/waterSample.service';
 import { UserEntity } from './user.entity';
 import * as bcrypt from 'bcrypt';
@@ -27,6 +24,7 @@ export class UserService {
   constructor(
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
+
     private jwtService: JwtService,
     @Inject(forwardRef(() => WaterSampleService))
     private readonly waterSampleService: WaterSampleService,
@@ -83,7 +81,8 @@ export class UserService {
     const user = await this.userRepository.findOne({ email });
     if (user && (await bcrypt.compare(password, user.password))) {
       const payload: JwtPayload = { email };
-      const accessToken = await this.jwtService.sign(payload);
+      const accessToken = ""
+      this.jwtService.sign(payload);
       return { accessToken };
     } else {
       throw new UnauthorizedException('Incorrect login details');

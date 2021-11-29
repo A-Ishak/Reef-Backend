@@ -1,6 +1,7 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { EntitySchema } from 'typeorm';
+import { JwtStrategy } from '../auth/jwt.strategy';
 import { UserEntity } from '../user/user.entity';
 import { UserModule } from '../user/user.module';
 import { UserService } from '../user/user.service';
@@ -12,6 +13,9 @@ import { WaterSampleService } from './waterSample.service';
   imports: [
     TypeOrmModule.forFeature([WaterSampleEntity, UserEntity]),
     forwardRef(() => UserModule),
+    UserModule,
+    JwtStrategy,
+    
   ],
 
   controllers: [WaterSampleController],

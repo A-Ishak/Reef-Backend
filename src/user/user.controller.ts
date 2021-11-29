@@ -1,5 +1,7 @@
-import { Body, Controller, Inject, Post, Put, Redirect } from '@nestjs/common';
+import { Body, Controller, Inject, Post, Put, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { isEmail } from 'class-validator';
+import { EmailToLowerCasePipe } from '../pipes/validation-pipes';
 import {
   AuthCredentialsDto,
   CreateUserDto,
@@ -9,11 +11,14 @@ import { UserEntity } from './user.entity';
 import { UserService } from './user.service';
 
 @Controller('user')
+//@UseGuards(AuthGuard())
 export class UserController {
   constructor(@Inject(UserService) private readonly userService: UserService) {}
 
   @Post('/signup')
-  public async createUser(@Body() userDto: CreateUserDto): Promise<UserEntity> {
+  public async createUser(
+    @Body(new EmailToLowerCasePipe()) userDto: CreateUserDto,
+  ): Promise<UserEntity> {
     return this.userService.createUser(userDto);
   }
 
@@ -26,7 +31,7 @@ export class UserController {
 
   @Post('/signin')
   public async signIn(
-    @Body() authCredentialsDto: AuthCredentialsDto,
+    @Body(new EmailToLowerCasePipe()) authCredentialsDto: AuthCredentialsDto,
   ): Promise<{ accessToken: string }> {
     return this.userService.signIn(authCredentialsDto);
   }
