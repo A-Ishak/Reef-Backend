@@ -5,14 +5,15 @@ import { Repository } from 'typeorm';
 import { CreateWaterSampleDTO } from './water-sample.dto';
 import { UserService } from '../user/user.service';
 import { WaterSampleEntity } from './waterSample.entity';
+import { UsersRepository } from '../user/user.repository';
 
 @Injectable()
 export class WaterSampleService {
   constructor(
     @InjectRepository(WaterSampleEntity)
     private waterSampleRepository: Repository<WaterSampleEntity>,
-    @Inject(forwardRef(() => UserService))
-    private userService: UserService,
+    @InjectRepository(UsersRepository)
+    private usersRepository: UsersRepository,
   ) {}
 
   public async waterOptimisationAlgorithm(waterSamples: WaterSampleEntity[]) {
@@ -21,7 +22,9 @@ export class WaterSampleService {
 
   public async createNewWaterSample(waterSample: CreateWaterSampleDTO) {
     const newWaterSample = new WaterSampleEntity();
-    const user = await this.userService.getUserByEmail(waterSample.email);
+    const user = await this.usersRepository.findOneOrFail({
+      where: { email: waterSample.email },
+    });
     newWaterSample.alkalinity = waterSample.alkalinity;
     newWaterSample.ammonia = waterSample.ammonia;
     newWaterSample.calcium = waterSample.calcium;

@@ -4,7 +4,7 @@ import {
   PayloadTooLargeException,
   PipeTransform,
 } from '@nestjs/common';
-import { CreateUserDto } from '../user/user.dto';
+import { CreateUserDto } from '../../user/user.dto';
 
 @Injectable()
 export class EmailToLowerCasePipe implements PipeTransform {

@@ -18,14 +18,15 @@ import { UserEntity } from './user.entity';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from '../shared/types/jwt-payloadTypes';
+import { UsersRepository } from './user.repository';
 
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(UserEntity)
-    private userRepository: Repository<UserEntity>,
+    @InjectRepository(UsersRepository)
+    private userRepository: UsersRepository,
 
-    private jwtService: JwtService,
+    //private jwtService: JwtService,
     @Inject(forwardRef(() => WaterSampleService))
     private readonly waterSampleService: WaterSampleService,
   ) {}
@@ -81,8 +82,8 @@ export class UserService {
     const user = await this.userRepository.findOne({ email });
     if (user && (await bcrypt.compare(password, user.password))) {
       const payload: JwtPayload = { email };
-      const accessToken = ""
-      this.jwtService.sign(payload);
+      const accessToken = '';
+      //this.jwtService.sign(payload);
       return { accessToken };
     } else {
       throw new UnauthorizedException('Incorrect login details');

@@ -1,17 +1,18 @@
 import { Body, Controller, Inject, Post, Put, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { isEmail } from 'class-validator';
-import { EmailToLowerCasePipe } from '../pipes/validation-pipes';
+import { EmailToLowerCasePipe } from '../shared/pipes/validation-pipes';
 import {
   AuthCredentialsDto,
   CreateUserDto,
   UpdateUserAquariumTypeDto,
 } from './user.dto';
+import { PassportModule } from '@nestjs/passport';
 import { UserEntity } from './user.entity';
 import { UserService } from './user.service';
 
 @Controller('user')
-//@UseGuards(AuthGuard())
+@UseGuards(AuthGuard())
 export class UserController {
   constructor(@Inject(UserService) private readonly userService: UserService) {}
 
