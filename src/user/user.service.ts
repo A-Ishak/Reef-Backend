@@ -25,8 +25,6 @@ export class UserService {
   constructor(
     @InjectRepository(UsersRepository)
     private userRepository: UsersRepository,
-
-    //private jwtService: JwtService,
     @Inject(forwardRef(() => WaterSampleService))
     private readonly waterSampleService: WaterSampleService,
   ) {}
@@ -39,6 +37,9 @@ export class UserService {
   }
 
   public async createUser(user: CreateUserDto): Promise<UserEntity> {
+    if ((await this.userRepository.findOne(user.email)).email === user.email) {
+      throw new ConflictException('Email is already in use');
+    }
     const newUser: UserEntity = new UserEntity();
     newUser.email = user.email;
     newUser.firstName = user.firstName;
@@ -46,18 +47,12 @@ export class UserService {
 
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(user.password, salt);
-
     newUser.password = hashedPassword;
 
-    const createdUser = this.userRepository.create({ ...newUser });
     try {
-      return await this.userRepository.save(createdUser);
+      return await this.userRepository.save({ ...newUser });
     } catch (error) {
-      if (error.code === '23505')
-        throw new ConflictException('Email is already in use');
-      else {
-        throw new InternalServerErrorException();
-      }
+      throw new InternalServerErrorException();
     }
   }
 
@@ -74,5 +69,4 @@ export class UserService {
       usersWaterSamples,
     );
   }
-
 }

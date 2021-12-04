@@ -6,6 +6,7 @@ import { CreateWaterSampleDTO } from './water-sample.dto';
 import { UserService } from '../user/user.service';
 import { WaterSampleEntity } from './waterSample.entity';
 import { UsersRepository } from '../user/user.repository';
+import { UserEntity } from '../user/user.entity';
 
 @Injectable()
 export class WaterSampleService {
@@ -38,5 +39,11 @@ export class WaterSampleService {
 
     const createdWaterSample = this.waterSampleRepository.save(newWaterSample);
     return createdWaterSample;
+  }
+
+  public async getAllWaterSamples(email: string) {
+    const currentUser: Promise<UserEntity> =
+      this.usersRepository.findOneOrFail(email);
+    return (await currentUser).waterResults;
   }
 }

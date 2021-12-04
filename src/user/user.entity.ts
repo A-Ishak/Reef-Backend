@@ -6,12 +6,14 @@ import {
   OneToMany,
   JoinColumn,
   PrimaryColumn,
+  Unique,
 } from 'typeorm';
 import { WaterSampleEntity } from '../waterSamples/waterSample.entity';
 import { EAquariumTypes } from '../shared/types/aquariumTypes';
 import { IsEmail } from 'class-validator';
 
 @Entity({ name: 'User' })
+@Unique(['email'])
 export class UserEntity {
   @PrimaryColumn({ unique: true })
   @IsEmail()

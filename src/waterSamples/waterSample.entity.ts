@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -45,6 +46,6 @@ export class WaterSampleEntity {
   createdAt: Date;
 
   @ManyToOne(() => UserEntity, (user) => user.waterResults)
+  @Exclude({ toPlainOnly: true })
   user: UserEntity;
-  newWaterSample: Promise<UserEntity>;
 }
