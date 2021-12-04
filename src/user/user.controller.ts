@@ -25,15 +25,9 @@ export class UserController {
 
   @Put('/editAquariumType')
   public async editAquariumType(
-    @Body() updateUserAquariumTypeDto: UpdateUserAquariumTypeDto,
+    @Body(new EmailToLowerCasePipe())
+    updateUserAquariumTypeDto: UpdateUserAquariumTypeDto,
   ) {
     return this.userService.editAquariumType(updateUserAquariumTypeDto);
-  }
-
-  @Post('/signin')
-  public async signIn(
-    @Body(new EmailToLowerCasePipe()) authCredentialsDto: AuthCredentialsDto,
-  ): Promise<{ accessToken: string }> {
-    return this.userService.signIn(authCredentialsDto);
   }
 }

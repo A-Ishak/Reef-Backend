@@ -75,18 +75,4 @@ export class UserService {
     );
   }
 
-  public async signIn(
-    authCredentialsDto: AuthCredentialsDto,
-  ): Promise<{ accessToken: string }> {
-    const { email, password } = authCredentialsDto;
-    const user = await this.userRepository.findOne({ email });
-    if (user && (await bcrypt.compare(password, user.password))) {
-      const payload: JwtPayload = { email };
-      const accessToken = '';
-      //this.jwtService.sign(payload);
-      return { accessToken };
-    } else {
-      throw new UnauthorizedException('Incorrect login details');
-    }
-  }
 }

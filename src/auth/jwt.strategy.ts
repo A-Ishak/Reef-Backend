@@ -11,12 +11,13 @@ import { Repository } from 'typeorm';
 import { JwtPayload } from '../shared/types/jwt-payloadTypes';
 import { UserEntity } from '../user/user.entity';
 import { UsersRepository } from '../user/user.repository';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
-    @InjectRepository(UsersRepository)
-    private usersRepository: UsersRepository,
+    @Inject(UserService)
+    private userService: UserService,
   ) {
     super({
       secretOrKey: 'topSecret51',
@@ -25,10 +26,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: JwtPayload): Promise<any> {
-    const user = '';
-    // await this.usersRepository.findOne({
-    //   where: { email: payload.email },
-    // });
+    const user = await this.userService.getUserByEmail(payload.email);
 
     if (!user) {
       throw new UnauthorizedException();
