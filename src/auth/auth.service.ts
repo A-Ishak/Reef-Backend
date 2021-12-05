@@ -29,8 +29,12 @@ export class AuthService {
 
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(user.password, salt);
-
-    newUser.password = hashedPassword;
+    const hashedRepeatedPassword = await bcrypt.hash(user.repeatPassword, salt);
+    if (hashedPassword === hashedRepeatedPassword) {
+      newUser.password = hashedPassword;
+    } else {
+      throw new InternalServerErrorException('Passwords do not match');
+    }
 
     const createdUser = this.usersRepository.create({ ...newUser });
     try {

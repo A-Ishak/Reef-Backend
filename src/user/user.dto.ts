@@ -26,12 +26,15 @@ export class CreateUserDto {
   password: string;
 
   @IsString()
-  @MaxLength(50)
-  firstName: string;
+  repeatPassword: string;
 
   @IsString()
   @MaxLength(50)
-  lastName: string;
+  firstName?: string;
+
+  @IsString()
+  @MaxLength(50)
+  lastName?: string;
 }
 
 export class AuthCredentialsDto {
