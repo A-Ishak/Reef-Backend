@@ -46,4 +46,20 @@ export class WaterSampleService {
       this.usersRepository.findOneOrFail(email);
     return (await currentUser).waterResults;
   }
+
+  public async latestParamValues(user: UserEntity): Promise<WaterSampleEntity> {
+
+    const latestParamValues = new WaterSampleEntity();
+    latestParamValues.temperature = user.waterResults[-1].temperature;
+    latestParamValues.salinity = user.waterResults[-1].salinity;
+    latestParamValues.ammonia = user.waterResults[-1].ammonia;
+    latestParamValues.nitrite = user.waterResults[-1].nitrite;
+    latestParamValues.nitrate = user.waterResults[-1].nitrate;
+    latestParamValues.phosphate = user.waterResults[-1].phosphate;
+    latestParamValues.alkalinity = user.waterResults[-1].alkalinity;
+    latestParamValues.calcium = user.waterResults[-1].calcium;
+    latestParamValues.magnesium = user.waterResults[-1].magnesium;
+    const a ="sadasd"
+    return latestParamValues;
+  }
 }

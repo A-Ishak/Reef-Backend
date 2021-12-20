@@ -16,31 +16,31 @@ export class WaterSampleEntity {
   testId: string;
 
   @Column({ nullable: true })
-  temperature: Number;
+  temperature: number;
 
   @Column({ nullable: true })
-  salinity: Number;
+  salinity: number;
 
   @Column({ nullable: true })
-  ammonia: Number;
+  ammonia: number;
 
   @Column({ nullable: true })
-  nitrite: Number;
+  nitrite: number;
 
   @Column({ nullable: true })
-  nitrate: Number;
+  nitrate: number;
 
   @Column({ nullable: true })
-  phosphate: Number;
+  phosphate: number;
 
   @Column({ nullable: true })
-  alkalinity: Number;
+  alkalinity: number;
 
   @Column({ nullable: true })
-  calcium: Number;
+  calcium: number;
 
   @Column({ nullable: true })
-  magnesium: Number;
+  magnesium: number;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

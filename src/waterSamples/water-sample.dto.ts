@@ -8,39 +8,39 @@ export class CreateWaterSampleDTO {
 
   @IsNumber()
   @IsOptional()
-  temperature?: Number;
+  temperature?: number;
 
   @IsNumber()
   @IsOptional()
-  salinity?: Number;
+  salinity?: number;
 
   @IsNumber()
   @IsOptional()
-  ammonia?: Number;
+  ammonia?: number;
 
   @IsNumber()
   @IsOptional()
-  nitrite?: Number;
+  nitrite?: number;
 
   @IsNumber()
   @IsOptional()
-  nitrate?: Number;
+  nitrate?: number;
 
   @IsNumber()
   @IsOptional()
-  phosphate?: Number;
+  phosphate?: number;
 
   @IsNumber()
   @IsOptional()
-  alkalinity?: Number;
+  alkalinity?: number;
 
   @IsNumber()
   @IsOptional()
-  calcium?: Number;
+  calcium?: number;
 
   @IsNumber()
   @IsOptional()
-  magnesium?: Number;
+  magnesium?: number;
 }
 
 

@@ -12,7 +12,6 @@ export class AuthController {
   signUp(
     @Body(new EmailToLowerCasePipe()) authCredentialsDto: CreateUserDto,
   ): Promise<UserEntity> {
-    console.log('sianfdshauabs');
     return this.authService.createUser(authCredentialsDto);
   }
 
