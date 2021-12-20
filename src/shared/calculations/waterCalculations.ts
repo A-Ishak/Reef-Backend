@@ -1,4 +1,6 @@
-export const ammoniaCalculation = (ammonia: Number): string => {
+import { UserEntity } from "src/user/user.entity";
+
+export const ammoniaCalculation = (ammonia: Number, user:UserEntity): string => {
   if (ammonia > 0) {
     return 'This must be lowered to 0 immediately! Change water and use a product like Seachem Safe.';
   } else if (ammonia < 0) {

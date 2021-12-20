@@ -19,7 +19,7 @@ import { Type } from 'class-transformer';
       type: 'postgres',
       host: 'localhost',
       port: 5432,
-      username: 'asadishak',
+      username: 'postgres',
       password: 'password',
       database: 'reefBackendFinal',
       autoLoadEntities: true,
