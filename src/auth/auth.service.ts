@@ -36,9 +36,8 @@ export class AuthService {
       throw new InternalServerErrorException('Passwords do not match');
     }
 
-    const createdUser = this.usersRepository.create({ ...newUser });
     try {
-      return await this.usersRepository.save(createdUser);
+      return await this.usersRepository.save({ ...newUser });
     } catch (error) {
       if (error.code === '23505')
         throw new ConflictException('Email is already in use');
@@ -50,13 +49,13 @@ export class AuthService {
 
   public async signIn(
     authCredentialsDto: AuthCredentialsDto,
-  ): Promise<{ accessToken: string }> {
+  ): Promise<{ accessToken: string; user: UserEntity }> {
     const { email, password } = authCredentialsDto;
     const user = await this.usersRepository.findOne({ email });
     if (user && (await bcrypt.compare(password, user.password))) {
       const payload: JwtPayload = { email };
       const accessToken = this.jwtService.sign(payload);
-      return { accessToken };
+      return { accessToken, user };
     } else {
       throw new UnauthorizedException('Incorrect login details');
     }

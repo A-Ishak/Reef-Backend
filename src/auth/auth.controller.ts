@@ -18,7 +18,7 @@ export class AuthController {
   @Post('/signin')
   signIn(
     @Body(new EmailToLowerCasePipe()) authCredentialsDto: AuthCredentialsDto,
-  ): Promise<{ accessToken: string }> {
+  ): Promise<{ accessToken: string; user: UserEntity }> {
     return this.authService.signIn(authCredentialsDto);
   }
 }
