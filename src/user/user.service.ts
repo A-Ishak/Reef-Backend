@@ -39,7 +39,7 @@ export class UserService {
   public async editAquariumType(updateAquariumType: UpdateUserAquariumTypeDto) {
     const currentUser = this.getUserByEmail(updateAquariumType.email);
     (await currentUser).aquariumType = updateAquariumType.aquariumType;
-    return currentUser;
+    return (await currentUser).aquariumType;
   }
 
   public async returnWaterRecommendations(email: string) {
