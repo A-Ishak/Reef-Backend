@@ -29,24 +29,24 @@ export class UserService {
     private readonly waterSampleService: WaterSampleService,
   ) {}
 
-  public async getUserByEmail(userEmail: string) {
-    const user: UserEntity = await this.userRepository.findOneOrFail({
-      where: { email: userEmail },
-    });
-    return user;
-  }
-
   public async editAquariumType(updateAquariumType: UpdateUserAquariumTypeDto) {
-    const currentUser = this.getUserByEmail(updateAquariumType.email);
-    (await currentUser).aquariumType = updateAquariumType.aquariumType;
-    return (await currentUser).aquariumType;
+    const currentUser: UserEntity = await this.userRepository.findOneOrFail({
+      where: { email: updateAquariumType.email },
+    });
+    currentUser.aquariumType = updateAquariumType.aquariumType;
+    await this.userRepository.save(currentUser);
+    return currentUser;
   }
 
   public async returnWaterRecommendations(email: string) {
-    const currentUser = this.getUserByEmail(email);
+    const currentUser = this.userRepository.findOneOrFail(email);
     const usersWaterSamples = (await currentUser).waterResults;
     return this.waterSampleService.waterOptimisationAlgorithm(
       usersWaterSamples,
     );
+  }
+
+  public async getUserByEmail(email: string) {
+    return this.userRepository.findOneOrFail({ where: { email: email } });
   }
 }
