@@ -3,7 +3,9 @@ import {
   Controller,
   Get,
   Inject,
+  Param,
   Post,
+  Query,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
@@ -29,9 +31,9 @@ export class WaterSampleController {
     return this.waterResultsService.createNewWaterSample(waterSampleDto);
   }
 
-  @Get('/getAllWaterSamples')
+  @Get('/getAllWaterSamples/')
   public async getAllWaterSamples(
-    @Body() email: string,
+    @Query() email: string,
   ): Promise<WaterSampleEntity[]> {
     return this.waterResultsService.getAllWaterSamples(email);
   }

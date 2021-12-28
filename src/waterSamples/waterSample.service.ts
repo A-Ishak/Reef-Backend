@@ -42,13 +42,12 @@ export class WaterSampleService {
   }
 
   public async getAllWaterSamples(email: string) {
-    const currentUser: Promise<UserEntity> =
-      this.usersRepository.findOneOrFail(email);
-    return (await currentUser).waterResults;
+    const currentUser = (await this.usersRepository.findOneOrFail(email))
+      .waterResults;
+    return currentUser;
   }
 
   public async latestParamValues(user: UserEntity): Promise<WaterSampleEntity> {
-
     const latestParamValues = new WaterSampleEntity();
     latestParamValues.temperature = user.waterResults[-1].temperature;
     latestParamValues.salinity = user.waterResults[-1].salinity;
@@ -59,7 +58,7 @@ export class WaterSampleService {
     latestParamValues.alkalinity = user.waterResults[-1].alkalinity;
     latestParamValues.calcium = user.waterResults[-1].calcium;
     latestParamValues.magnesium = user.waterResults[-1].magnesium;
-    const a ="sadasd"
+
     return latestParamValues;
   }
 }
