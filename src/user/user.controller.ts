@@ -1,4 +1,12 @@
-import { Body, Controller, Inject, Post, Put, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Inject,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { isEmail } from 'class-validator';
 import { EmailToLowerCasePipe } from '../shared/pipes/validation-pipes';
@@ -17,5 +25,13 @@ export class UserController {
     updateUserAquariumTypeDto: UpdateUserAquariumTypeDto,
   ) {
     return this.userService.editAquariumType(updateUserAquariumTypeDto);
+  }
+
+  @Get('/checkJWTValidity')
+  public async checkJWTValidity(
+    @Body(new EmailToLowerCasePipe())
+    email: string,
+  ) {
+    return this.userService.checkJWTValidity(email);
   }
 }

@@ -49,4 +49,10 @@ export class UserService {
   public async getUserByEmail(email: string) {
     return this.userRepository.findOneOrFail({ where: { email: email } });
   }
+
+  public async checkJWTValidity(email: string) {
+    if (this.userRepository.findOneOrFail(email)) {
+      return 'Validated!';
+    }
+  }
 }
