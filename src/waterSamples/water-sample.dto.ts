@@ -43,41 +43,78 @@ export class CreateWaterSampleDTO {
   magnesium?: number;
 }
 
+export class waterSampleDto {
+  @IsNumber()
+  @IsOptional()
+  temperature?: number;
+
+  @IsNumber()
+  @IsOptional()
+  salinity?: number;
+
+  @IsNumber()
+  @IsOptional()
+  ammonia?: number;
+
+  @IsNumber()
+  @IsOptional()
+  nitrite?: number;
+
+  @IsNumber()
+  @IsOptional()
+  nitrate?: number;
+
+  @IsNumber()
+  @IsOptional()
+  phosphate?: number;
+
+  @IsNumber()
+  @IsOptional()
+  alkalinity?: number;
+
+  @IsNumber()
+  @IsOptional()
+  calcium?: number;
+
+  @IsNumber()
+  @IsOptional()
+  magnesium?: number;
+}
 
 export class OptimisedWaterParametersDTO {
-  @IsNumber()
+  @IsString()
   @IsOptional()
   temperature?: string;
 
-  @IsNumber()
+  @IsString()
   @IsOptional()
   salinity?: string;
 
-  @IsNumber()
+  @IsString()
   @IsOptional()
   ammonia?: string;
 
-  @IsNumber()
+  @IsString()
   @IsOptional()
   nitrite?: string;
 
-  @IsNumber()
+  @IsString()
   @IsOptional()
   nitrate?: string;
 
-  @IsNumber()
+  @IsString()
   @IsOptional()
   phosphate?: string;
 
-  @IsNumber()
+  @IsString()
   @IsOptional()
   alkalinity?: string;
 
-  @IsNumber()
+  @IsString()
   @IsOptional()
   calcium?: string;
 
-  @IsNumber()
+  @IsString()
   @IsOptional()
   magnesium?: string;
 }

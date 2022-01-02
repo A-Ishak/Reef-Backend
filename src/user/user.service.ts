@@ -38,13 +38,13 @@ export class UserService {
     return currentUser;
   }
 
-  public async returnWaterRecommendations(email: string) {
-    const currentUser = this.userRepository.findOneOrFail(email);
-    const usersWaterSamples = (await currentUser).waterResults;
-    return this.waterSampleService.waterOptimisationAlgorithm(
-      usersWaterSamples,
-    );
-  }
+  // public async returnWaterRecommendations(email: string) {
+  //   const currentUser = this.userRepository.findOneOrFail(email);
+  //   const usersWaterSamples = (await currentUser).waterResults;
+  //   return this.waterSampleService.waterOptimisationAlgorithm(
+  //     usersWaterSamples,
+  //   );
+  // }
 
   public async getUserByEmail(email: string) {
     return this.userRepository.findOneOrFail({ where: { email: email } });
