@@ -2,12 +2,16 @@ import { forwardRef } from '@nestjs/common';
 import { Inject, Injectable } from '@nestjs/common/decorators/core';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateWaterSampleDTO, OptimisedWaterParametersDTO } from './water-sample.dto';
+import {
+  CreateWaterSampleDTO,
+  OptimisedWaterParametersDTO,
+} from './water-sample.dto';
 import { UserService } from '../user/user.service';
 import { WaterSampleEntity } from './waterSample.entity';
 import { UsersRepository } from '../user/user.repository';
 import { UserEntity } from '../user/user.entity';
 import { EAquariumTypes } from 'src/shared/types/aquariumTypes';
+import { fowlrAlgorithm } from 'src/shared/calculations/waterCalculations';
 
 @Injectable()
 export class WaterSampleService {
@@ -59,16 +63,14 @@ export class WaterSampleService {
     return latestParamValues;
   }
 
-  public async waterOptimisationAlgorithm(
-    email: string,
-    latestSample: OptimisedWaterParametersDTO,
-  ) {
+  public async waterOptimisationAlgorithm(email: string) {
     const user = this.usersRepository.findOneOrFail({
       where: { email: email },
     });
     const waterSamples = this.getAllWaterSamples(email);
     switch ((await user).aquariumType) {
       case EAquariumTypes.FOWLR:
+         fowlrAlgorithm(waterSamples[-1]);
         break;
       case EAquariumTypes.SOFT_CORALS:
         break;

@@ -1,10 +1,10 @@
-export class fowlrIdealParameters {
-  temperature = 25;
-  salinity = 1.02;
-  ammonia = 0;
-  nitrite = 0;
-  nitrateUpper = 20;
-  phosphateUpper = 1.0;
+export enum fowlrIdealParameters {
+  temperature = 25,
+  salinity = 1.02,
+  ammonia = 0,
+  nitrite = 0,
+  nitrateUpper = 20,
+  phosphateUpper = 1.0,
 }
 
 export enum softiesIdealParameters {
