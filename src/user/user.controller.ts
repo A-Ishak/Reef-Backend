@@ -31,7 +31,7 @@ export class UserController {
   public async checkJWTValidity(
     @Body(new EmailToLowerCasePipe())
     email: string,
-  ) {
+  ): Promise<Boolean> {
     return this.userService.checkJWTValidity(email);
   }
 }

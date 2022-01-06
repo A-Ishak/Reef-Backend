@@ -52,7 +52,8 @@ export class UserService {
 
   public async checkJWTValidity(email: string) {
     if (this.userRepository.findOneOrFail(email)) {
-      return 'Validated!';
+      return true;
     }
+    return false;
   }
 }
