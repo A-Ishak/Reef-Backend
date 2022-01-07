@@ -27,7 +27,7 @@ export class UserController {
     return this.userService.editAquariumType(updateUserAquariumTypeDto);
   }
 
-  @Get('/checkJWTValidity')
+  @Post('/checkJWTValidity')
   public async checkJWTValidity(
     @Body(new EmailToLowerCasePipe())
     email: string,
