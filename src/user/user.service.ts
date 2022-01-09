@@ -50,10 +50,10 @@ export class UserService {
     return this.userRepository.findOneOrFail({ where: { email: email } });
   }
 
-  public async checkJWTValidity(email: string) {
-    if (this.userRepository.findOne(email)) {
-      return true;
-    }
+  public async checkJWTValidity() {
+    // if (this.userRepository.findOne(email)) {
+    return true;
+    // }
     return false;
   }
 }
