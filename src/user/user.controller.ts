@@ -28,12 +28,10 @@ export class UserController {
   }
 
   @Post('/checkJWTValidity')
-  public async checkJWTValidity(): // @Body(new EmailToLowerCasePipe())
-  // email: string,
-  Promise<Boolean> {
-    return this.userService
-      .checkJWTValidity
-      //email
-      ();
+  public async checkJWTValidity(
+    @Body(new EmailToLowerCasePipe())
+    email: string,
+  ): Promise<string> {
+    return this.userService.checkJWTValidity(email);
   }
 }
