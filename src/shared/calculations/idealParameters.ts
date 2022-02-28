@@ -1,6 +1,7 @@
 export enum fowlrIdealParameters {
   temperature = 25,
   salinity = 1.02,
+  pH = 8.3,
   ammonia = 0,
   nitrite = 0,
   nitrateUpper = 20,
@@ -10,6 +11,7 @@ export enum fowlrIdealParameters {
 export enum softiesIdealParameters {
   temperature = 25,
   salinity = 1.025,
+  pH = 8.3,
   ammonia = 0,
   nitrite = 0,
   nitrateUpper = 10,
@@ -22,6 +24,7 @@ export enum softiesIdealParameters {
 export enum lpsIdealParameters {
   temperature = 25,
   salinity = 1.025,
+  pH = 8.3,
   ammonia = 0,
   nitrite = 0,
   nitrateLower = 2,
@@ -36,6 +39,7 @@ export enum lpsIdealParameters {
 export enum mixedIdealParameters {
   temperature = 25,
   salinity = 1.025,
+  pH = 8.3,
   ammonia = 0,
   nitrite = 0,
   nitrateLower = 2,
@@ -50,6 +54,7 @@ export enum mixedIdealParameters {
 export enum spsIdealParameters {
   temperature = 25,
   salinity = 1.025,
+  pH = 8.3,
   ammonia = 0,
   nitrite = 0,
   nitrateLower = 2,

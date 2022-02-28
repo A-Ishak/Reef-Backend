@@ -16,6 +16,10 @@ export class CreateWaterSampleDTO {
 
   @IsNumber()
   @IsOptional()
+  pH?: number;
+
+  @IsNumber()
+  @IsOptional()
   ammonia?: number;
 
   @IsNumber()
@@ -54,6 +58,10 @@ export class waterSampleDto {
 
   @IsNumber()
   @IsOptional()
+  pH?: number;
+
+  @IsNumber()
+  @IsOptional()
   ammonia?: number;
 
   @IsNumber()
@@ -89,6 +97,10 @@ export class OptimisedWaterParametersDTO {
   @IsString()
   @IsOptional()
   salinity?: string;
+
+  @IsNumber()
+  @IsOptional()
+  pH?: number;
 
   @IsString()
   @IsOptional()

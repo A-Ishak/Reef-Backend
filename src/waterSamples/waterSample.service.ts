@@ -28,6 +28,7 @@ export class WaterSampleService {
       where: { email: waterSample.email },
     });
     newWaterSample.alkalinity = waterSample.alkalinity;
+    newWaterSample.pH = waterSample.pH;
     newWaterSample.ammonia = waterSample.ammonia;
     newWaterSample.calcium = waterSample.calcium;
     newWaterSample.magnesium = waterSample.magnesium;
@@ -43,8 +44,6 @@ export class WaterSampleService {
   }
 
   public async getAllWaterSamples(email: string) {
-    console.log(await this.usersRepository.findOne({where:{email:"21e1jn2e1n"}}))
-    console.log((await this.usersRepository.findOne({where:{email:"sadasdadas"}})).email)
     const currentUser = (await this.usersRepository.findOneOrFail(email))
       .waterResults;
     return currentUser;
@@ -54,6 +53,7 @@ export class WaterSampleService {
     const latestParamValues = new WaterSampleEntity();
     latestParamValues.temperature = user.waterResults[-1].temperature;
     latestParamValues.salinity = user.waterResults[-1].salinity;
+    latestParamValues.pH = user.waterResults[-1].pH;
     latestParamValues.ammonia = user.waterResults[-1].ammonia;
     latestParamValues.nitrite = user.waterResults[-1].nitrite;
     latestParamValues.nitrate = user.waterResults[-1].nitrate;

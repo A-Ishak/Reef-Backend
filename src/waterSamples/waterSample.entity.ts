@@ -19,6 +19,9 @@ export class WaterSampleEntity {
   temperature: number;
 
   @Column({ nullable: true })
+  pH: number;
+
+  @Column({ nullable: true })
   salinity: number;
 
   @Column({ nullable: true })
