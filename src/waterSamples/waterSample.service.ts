@@ -11,7 +11,7 @@ import { WaterSampleEntity } from './waterSample.entity';
 import { UsersRepository } from '../user/user.repository';
 import { UserEntity } from '../user/user.entity';
 import { EAquariumTypes } from 'src/shared/types/aquariumTypes';
-import { fowlrAlgorithm } from 'src/shared/calculations/waterCalculations';
+import { paramaterAlgorithm } from 'src/shared/calculations/waterCalculations';
 
 @Injectable()
 export class WaterSampleService {
@@ -43,6 +43,8 @@ export class WaterSampleService {
   }
 
   public async getAllWaterSamples(email: string) {
+    console.log(await this.usersRepository.findOne({where:{email:"21e1jn2e1n"}}))
+    console.log((await this.usersRepository.findOne({where:{email:"sadasdadas"}})).email)
     const currentUser = (await this.usersRepository.findOneOrFail(email))
       .waterResults;
     return currentUser;
@@ -70,7 +72,7 @@ export class WaterSampleService {
     const waterSamples = this.getAllWaterSamples(email);
     switch ((await user).aquariumType) {
       case EAquariumTypes.FOWLR:
-         fowlrAlgorithm(waterSamples[-1]);
+        paramaterAlgorithm(waterSamples[-1]);
         break;
       case EAquariumTypes.SOFT_CORALS:
         break;

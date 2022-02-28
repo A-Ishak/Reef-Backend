@@ -16,7 +16,7 @@ import {
 // How will it work
 // Lets apply weights to important parameters
 
-export const fowlrAlgorithm = (
+export const paramaterAlgorithm = (
   latestWaterSample: waterSampleDto,
 ): OptimisedWaterParametersDTO => {
   const optimisedWaterParameters = new OptimisedWaterParametersDTO();
@@ -74,6 +74,8 @@ export const fowlrAlgorithm = (
   }
   return optimisedWaterParameters;
 };
+
+
 
 // export const ammoniaCalculation = (ammonia: Number, user:UserEntity): string => {
 //   if (ammonia > 0) {
